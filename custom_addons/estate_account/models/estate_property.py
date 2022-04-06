@@ -13,7 +13,10 @@ class EstateProperty(models.Model):
         journal_id = self.env['account.move'].with_context(default_move_type='out_invoice')._get_default_journal()
 
         self.env['account.move'].create(
-            {'partner_id': self.buyer_id, 'move_type': move_type, 'journal_id': journal_id.id,
+            {
+                'partner_id': self.buyer_id,
+                'move_type': move_type,
+                'journal_id': journal_id.id,
              'invoice_line_ids': [
                  Command.create({
                      'name': self.name,
